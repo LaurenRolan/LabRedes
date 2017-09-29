@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
   // envia mensagem de conexao - aprimorar para dar IP e porta
   if ((send(s, "Conectado\n", 11,0)) == SOCKET_ERROR);
   {
-    printf("erro na transmiss„o - %d\n", WSAGetLastError());
+    printf("erro na transmiss√£o - %d\n", WSAGetLastError());
     closesocket(s);
     return 0;
   }
@@ -100,8 +100,8 @@ int main(int argc, char* argv[])
 
     if ((send(s, (const char *)&str, sizeof(str),0)) < 0)
     {
-      //printf("erro na transmiss„o - %d\n", WSAGetLastError());
-      printf("erro na transmiss„o\n");
+      //printf("erro na transmiss√£o - %d\n", WSAGetLastError());
+      printf("erro na transmiss√£o\n");
       close(s);
       return 0;
     }
