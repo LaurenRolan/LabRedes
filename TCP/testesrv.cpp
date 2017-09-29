@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
   if ((s = socket(AF_INET, SOCK_STREAM, 0))==INVALID_SOCKET)
 	  TrataErro(s, ABRESOCK);
 
-  // Define domínio, IP e porta a receber dados
+  // Define domÃ­nio, IP e porta a receber dados
   addr_serv.sin_family = AF_INET;
   addr_serv.sin_addr.s_addr = htonl(INADDR_ANY); // recebe de qualquer IP
   addr_serv.sin_port = htons(PORTA_SRV);
