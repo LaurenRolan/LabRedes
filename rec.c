@@ -1,9 +1,9 @@
 /* Copyright (C) 2006 PRAV - Pesquisa em Redes de Alta Velocidade
- *                    NTVD - Núcleo de TV Digital
+ *                    NTVD - NÃºcleo de TV Digital
  * http://www.ufrgs.br/ntvd
  *
- *  O objetivo deste programa é apresentar a base da estrutura de programação com sockets
- *  através de UDP
+ *  O objetivo deste programa Ã© apresentar a base da estrutura de programaÃ§Ã£o com sockets
+ *  atravÃ©s de UDP
  *
  * Serv.c: Esqueleto de servidor UDP.
  * Argumentos: -p <porta>
@@ -29,7 +29,7 @@ int main(int argc, char **argv){
 	 struct  sockaddr_in peer;
 	 SOCKET  s;
 	 int porta, peerlen, rc, i;
-	 char buffer[100];
+	 char buffer[1250];
 
 #ifdef _WIN32
 	 WSADATA wsaData;
@@ -74,7 +74,7 @@ int main(int argc, char **argv){
 		  exit(1);
  	 }
 
-// Define domínio, IP e porta a receber dados
+// Define domÃ­nio, IP e porta a receber dados
 	 memset((void *) &peer,0,sizeof(struct sockaddr_in));
 	 peer.sin_family = AF_INET;
 	 peer.sin_addr.s_addr = htonl(INADDR_ANY); // Recebe de qualquer IP
