@@ -1,9 +1,9 @@
 /* Copyright (C) 2006 PRAV - Pesquisa em Redes de Alta Velocidade
- *                    NTVD - Núcleo de TV Digital
+ *                    NTVD - NÃºcleo de TV Digital
  * http://www.ufrgs.br/ntvd
  *
- *  O objetivo deste programa é apresentar a base da estrutura de programação com sockets
- *  através de UDP
+ *  O objetivo deste programa Ã© apresentar a base da estrutura de programaÃ§Ã£o com sockets
+ *  atravÃ©s de UDP
  *
  * Cli.c: Esqueleto de cliente UDP.
  * Argumentos: -h <IP destino> -p <porta>
@@ -45,6 +45,7 @@ int main(int argc, char **argv){
 	 SOCKET s;
 	 int porta, peerlen, rc, i;
 	 char ip[16], buffer[1250];
+	 int tempo, kbits;
 
 #ifdef _WIN32
 	 WSADATA wsaData;
@@ -79,6 +80,15 @@ int main(int argc, char **argv){
 								exit(1);
 						  }
 						  break;
+						
+					case 'r': //kbits/s
+                        		i++;
+                        		kbits = atoi(argv[i]);
+                        		if(kbits < 1) {
+                            			printf("Valor invalido de r.\n");
+                            			exit(1);
+                        		}
+                        		break;
 
 					 default:
 						  printf("Parametro invalido %d: %s\n",i,argv[i]);
@@ -89,6 +99,9 @@ int main(int argc, char **argv){
 				exit(1);
 		  }
 	 }
+	
+	//Calcula o tempo em us
+	tempo = (1250*8/kbits) * 1000;
 
 // Cria o socket na familia AF_INET (Internet) e do tipo UDP (SOCK_DGRAM)
 	 if((s = socket(AF_INET, SOCK_DGRAM,0)) < 0) {
@@ -102,10 +115,9 @@ int main(int argc, char **argv){
 	 peer.sin_addr.s_addr = inet_addr(ip);
 	 peerlen = sizeof(peer);
 
-// obs: no windows 8 em maio de 2015 eu tive que utilizar ip destino existente...
 	while(1)
 	{
 		sendto(s, buffer, sizeof(buffer), 0, (struct sockaddr *)&peer, peerlen);
-		usleep2(25000);
+		usleep2(tempo);
 	}
 }
