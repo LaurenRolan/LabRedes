@@ -1,9 +1,9 @@
 /* Copyright (C) 2006 PRAV - Pesquisa em Redes de Alta Velocidade
- *                    NTVD - Núcleo de TV Digital
+ *                    NTVD - NÃºcleo de TV Digital
  * http://www.ufrgs.br/ntvd
  *
- *  O objetivo deste programa é apresentar a base da estrutura de programação com sockets
- *  através de UDP
+ *  O objetivo deste programa Ã© apresentar a base da estrutura de programaÃ§Ã£o com sockets
+ *  atravÃ©s de UDP
  *
  * Cli.c: Esqueleto de cliente UDP.
  * Argumentos: -h <IP destino> -p <porta>
@@ -32,7 +32,7 @@ int main(int argc, char **argv){
 	 SOCKET s;
 	 int porta, peerlen, rc, i;
 	 int bits;
-	 char ip[16], buffer[100];
+	 char ip[16], buffer[2650];
 
 #ifdef _WIN32
 	 WSADATA wsaData;
@@ -102,18 +102,7 @@ int main(int argc, char **argv){
 // Envia pacotes Hello e aguarda resposta
 	while(1)
 	{
-		strcpy(buffer,"Hello");
 		sendto(s, buffer, sizeof(buffer), 0, (struct sockaddr *)&peer, peerlen);
-		printf("Enviado Hello\n");
 		Sleep(1/bits);
-#ifdef _WIN32
-		rc = recvfrom(s,buffer,sizeof(buffer),0,(struct sockaddr *)&peer, &peerlen);
-		printf("Recebido %s\n\n",&buffer);
-		Sleep(5000);
-#else
-		rc = recvfrom(s,buffer,sizeof(buffer),0,(struct sockaddr *) &peer,(socklen_t *) &peerlen);
-		printf("Recebido %s\n\n",&buffer);
-		//sleep(5);
-#endif
 	}
 }
