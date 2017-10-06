@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#define _WIN32 1 // 1 ou zero dependendo do SO utilizado
 
 #ifdef _WIN32
 	#include <winsock2.h>

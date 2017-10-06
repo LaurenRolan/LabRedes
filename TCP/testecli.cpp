@@ -21,8 +21,8 @@
 
 #define PORTA_CLI 2345 // porta TCP do cliente
 #define PORTA_SRV 2023 // porta TCP do servidor
-#define STR_IPSERVIDOR "127.0.0.1"
-//#define STR_IPSERVIDOR "192.168.0.146"
+#define STR_IPSERVIDOR "10.67.105.5"
+
 
 int main(int argc, char* argv[])
 {
@@ -83,32 +83,19 @@ int main(int argc, char* argv[])
   }
 #endif
 
-  // recebe do teclado e envia ao servidor
   char str[1250];
   char ch;
   int i;
 
   while(1)
   {
-    printf("$ ");
-
-    for(i=0; (i<80) &&  (ch = getchar()) != '\n'; i++ )
-      str[i] = (char)ch;
-    str[i] = '\0';
-    
-    //strcpy(str, "mensagem\0");
 
     if ((send(s, (const char *)&str, sizeof(str),0)) < 0)
     {
-      //printf("erro na transmissão - %d\n", WSAGetLastError());
       printf("erro na transmissão\n");
       close(s);
       return 0;
     }
-    if(strcmp((const char *)&str, "q")==0)
-      break;
-     
-     //usleep(100000);
   }
 
   // fecha socket e termina programa
