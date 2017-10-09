@@ -20,7 +20,7 @@
 
 
 #define MAX_PACKET 1250
-#define PORTA_SRV 2023 // porta TCP do servidor
+#define PORTA_SRV 2032 // porta TCP do servidor
 
 enum erros {WSTARTUP, ABRESOCK, BIND, ACCEPT, LISTEN,RECEIVE};
 
@@ -73,11 +73,6 @@ int main(int argc, char* argv[])
 	  TrataErro(s, RECEIVE);
     }
 
-    // mostra na tela
-    if(strcmp((const char *)&recvbuf, "q")==0)
-      break;
-    else
-      printf(" - msg recv - %s\n", recvbuf);
   }
 
   // fecha socket e termina programa

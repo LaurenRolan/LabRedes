@@ -19,12 +19,12 @@
 #endif
 
 
-#define PORTA_CLI 2345 // porta TCP do cliente
-#define PORTA_SRV 2023 // porta TCP do servidor
-#define STR_IPSERVIDOR "10.67.105.5"
+#define PORTA_CLI 2352 // porta TCP do cliente
+#define PORTA_SRV 2032 // porta TCP do servidor
+#define STR_IPSERVIDOR "143.54.12.91"
 #define BUFFER_SIZE 1250
 
-void log(int &cont);
+void log(unsigned long *cont);
 
 
 int main(int argc, char* argv[])
@@ -89,20 +89,23 @@ int main(int argc, char* argv[])
   char str[BUFFER_SIZE];
   char ch;
   int i;
+  unsigned long cont;
   clock_t ultimo = clock();
 
   while(1)
   {
     clock_t atual = clock();
-    if(atual >= (ultimo + CLOCKS_PER_SEC)) {
-	log(&cont);
-	ultimo = atual;
-    }
+    
     if ((send(s, (const char *)&str, sizeof(str),0)) < 0)
     {
       printf("erro na transmissão\n");
       close(s);
       return 0;
+    }
+    cont++;
+    if(atual >= (ultimo + CLOCKS_PER_SEC)) {
+	log(&cont);
+	ultimo = atual;
     }
   }
 
@@ -112,7 +115,7 @@ int main(int argc, char* argv[])
   return 0;
 }
 
-void log(int &cont) {
-	fprintf(stderr, "%d bits/seg\n", (*cont)*BUFFER_SIZE*8);
+void log(unsigned long *cont) {
+	fprintf(stderr, "%lu bits/seg\n", (*cont)*BUFFER_SIZE*8);
 	*cont = 0;
 }
