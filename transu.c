@@ -15,7 +15,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#define _WIN32 1
 
 #ifdef _WIN32
 	#include <winsock2.h>
@@ -27,7 +26,7 @@
 	#include <netinet/in.h>
 	#define SOCKET	int
 #endif
-
+/*
 void usleep2(DWORD waitTime){
 	LARGE_INTEGER perfCnt, start, now;
 
@@ -38,8 +37,7 @@ void usleep2(DWORD waitTime){
 		QueryPerformanceCounter((LARGE_INTEGER*) &now);
 	} while ((now.QuadPart - start.QuadPart) / (float)(perfCnt.QuadPart) * 1000 * 1000 < waitTime);
 }
-
-
+*/
 int main(int argc, char **argv){
 	 struct sockaddr_in peer;
 	 SOCKET s;
@@ -58,7 +56,7 @@ int main(int argc, char **argv){
 
 	 if(argc < 5) {
 		  printf("Utilizar:\n");
-		  printf("trans -h <numero_ip> -p <porta>\n");
+		  printf("trans -h <numero_ip> -p <porta> -r <kbits/s>\n");
 		  exit(1);
 	 }
 
@@ -82,13 +80,13 @@ int main(int argc, char **argv){
 						  break;
 						
 					case 'r': //kbits/s
-                        		i++;
-                        		kbits = atoi(argv[i]);
-                        		if(kbits < 1) {
-                            			printf("Valor invalido de r.\n");
-                            			exit(1);
-                        		}
-                        		break;
+                        			i++;
+                        			kbits = atoi(argv[i]);
+                        			if(kbits < 1) {
+                            				printf("Valor invalido de r.\n");
+                            				exit(1);
+                        			}
+                        			break;
 
 					 default:
 						  printf("Parametro invalido %d: %s\n",i,argv[i]);
@@ -118,6 +116,7 @@ int main(int argc, char **argv){
 	while(1)
 	{
 		sendto(s, buffer, sizeof(buffer), 0, (struct sockaddr *)&peer, peerlen);
-		usleep2(tempo);
+		//usleep2(tempo);
+		usleep(tempo);
 	}
 }

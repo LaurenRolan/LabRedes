@@ -99,10 +99,6 @@ int main(int argc, char **argv){
 		 rc = recvfrom(s,buffer,sizeof(buffer),0,(struct sockaddr *) &peer,(socklen_t *)&peerlen);
 #endif
 		 printf("Recebido %s\n", &buffer);
-
-		 strcpy(buffer,"ACK");
-		 sendto(s,buffer,sizeof(buffer),0,(struct sockaddr *)&peer, peerlen);
-		 printf("Enviado ACK\n\n");
 	 }
 
 }

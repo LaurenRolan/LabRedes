@@ -1,13 +1,13 @@
 CC = gcc
 FLAGS = -Wall 
 
-all: rec trans
+all: rec transu
 
 recv: rec.c
-	$(CC) recv.c -lc -o rec $(FLAGS) 
+	$(CC) rec.c -lc -o rec $(FLAGS) 
 
-sender: trans.c 
-	$(CC) trans.c -lc -o trans $(FLAGS) 
+sender: transu.c 
+	$(CC) transu.c -lc -o transu $(FLAGS) 
 
 clean:
-	rm rec trans 
+	rm *.o *.exe
