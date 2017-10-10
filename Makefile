@@ -11,3 +11,6 @@ sender: transu.c
 
 clean:
 	rm *.o *.exe
+
+
+

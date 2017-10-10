@@ -87,8 +87,6 @@ int main(int argc, char* argv[])
 #endif
 
   char str[BUFFER_SIZE];
-  char ch;
-  int i;
   unsigned long cont;
   clock_t ultimo = clock();
 
