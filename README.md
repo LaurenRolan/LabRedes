@@ -1,2 +1,4 @@
 # LabRedes
-Laboratório show de Redes
+* Laboratório 3 - TCP e UDP
+
+* Laboratório 6 - Simulação de redes
